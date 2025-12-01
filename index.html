@@ -3,40 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autovocoloc | كراء السيارات ميدلت</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>AutoVecoloc | Location de Voitures Midelt</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* --- تنسيقات عامة --- */
+        /* --- الأساسيات والألوان --- */
         :root {
-            --primary: #000000; /* أسود للفخامة */
-            --secondary: #1e3799; /* أزرق */
-            --accent: #e74c3c;    /* أحمر */
-            --gold: #d4af37;      /* ذهبي للسيارات الفاخرة */
-            --light: #f5f6fa;
-            --text: #2f3640;
+            --primary: #0f172a;   /* أسود ملكي */
+            --gold: #d4af37;      /* ذهبي */
+            --white: #ffffff;
+            --gray: #f8f9fa;
+            --text: #333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: #fff; color: var(--text); }
-        a { text-decoration: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--gray);
+            overflow-x: hidden;
+        }
 
-        /* شريط العلوي (اتصال) */
+        /* تنسيق الفرنسية */
+        body.lang-fr { font-family: 'Poppins', sans-serif; direction: ltr; }
+
+        a { text-decoration: none; }
+        
+        /* --- الشريط العلوي --- */
         .top-bar {
             background-color: var(--primary);
-            color: white;
+            color: var(--white);
             padding: 10px 5%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 0.9rem;
-            flex-wrap: wrap;
+            border-bottom: 3px solid var(--gold);
         }
-        .top-bar i { margin-left: 5px; color: var(--accent); }
 
-        /* الناف بار */
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--white);
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .lang-switch button:hover { background: var(--gold); color: var(--primary); font-weight: bold; }
+
+        /* --- القائمة (Navbar) --- */
         nav {
-            background: white;
-            padding: 1rem 5%;
+            background: var(--white);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,25 +67,27 @@
             z-index: 1000;
         }
 
-        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); }
-        .logo span { color: var(--secondary); }
-        
-        .nav-links a { color: var(--text); margin-left: 20px; font-weight: 700; transition: 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--gold); }
 
-        .cta-btn {
-            background: var(--accent);
-            color: white !important;
-            padding: 10px 25px;
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { color: var(--text); font-weight: 700; font-size: 1.1rem; }
+        .nav-links a:hover { color: var(--gold); }
+
+        .btn-reserve {
+            background: var(--gold);
+            color: var(--primary) !important;
+            padding: 10px 30px;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
+        .btn-reserve:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5); }
 
-        /* الهيرو */
+        /* --- الواجهة (Hero) --- */
         .hero {
             height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=1920');
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=1920');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -72,248 +95,266 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            color: var(--white);
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; color: #dfe6e9; }
-        
-        .badge {
-            background: var(--secondary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.3rem; color: #ddd; max-width: 700px; margin-bottom: 30px; }
 
-        /* الخدمات */
-        .services {
-            padding: 50px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: center;
-            margin-top: -50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-        .service-box:hover { transform: translateY(-10px); }
-        .service-box i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 15px; }
-
-        /* أسطول السيارات */
-        .fleet { padding: 80px 5%; background: var(--light); }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-header h2 { font-size: 2.5rem; color: var(--primary); }
-        .section-header p { color: #7f8c8d; }
+        /* --- السيارات --- */
+        .fleet-section { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); }
+        .line { width: 100px; height: 5px; background: var(--gold); margin: 10px auto; border-radius: 5px; }
 
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
         .car-card {
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            position: relative;
         }
+        .car-card:hover { transform: translateY(-10px); }
 
-        .car-img-container {
-            height: 200px;
-            overflow: hidden;
-        }
-        .car-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        .car-card:hover img { transform: scale(1.1); }
+        .car-img-box { height: 230px; overflow: hidden; background: #eee; }
+        .car-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        .car-details { padding: 20px; }
-        .car-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .car-title h3 { font-size: 1.2rem; }
-        .tags span {
-            background: #f1f2f6;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            color: #57606f;
-            margin-left: 5px;
-        }
+        .car-content { padding: 25px; }
+        .car-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .car-name { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+        .car-price { font-weight: bold; color: var(--gold); font-size: 1.1rem; }
 
-        /* قسم المناسبات VIP */
-        .vip-section {
-            background: #111;
-            color: var(--gold);
-            padding: 80px 5%;
-            margin-top: 50px;
-            text-align: center;
-            border-top: 5px solid var(--gold);
+        .car-specs { 
+            display: flex; gap: 15px; margin-bottom: 15px; color: #666; font-size: 0.9rem; background: #f8f9fa; padding: 10px; border-radius: 8px;
         }
-        .vip-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .vip-card {
-            border: 1px solid #333;
-            background: #1a1a1a;
-            width: 100%;
-            max-width: 400px;
-            padding-bottom: 20px;
-        }
-        .vip-card h3 { color: white; margin: 15px 0; }
-        
-        .whatsapp-btn {
+        .car-specs span i { color: var(--gold); margin-left: 5px; }
+
+        /* دوائر الألوان */
+        .colors-available { display: flex; gap: 5px; margin-bottom: 20px; align-items: center; font-size: 0.8rem; color: #777; }
+        .color-dot { width: 15px; height: 15px; border-radius: 50%; border: 1px solid #ccc; display: inline-block; }
+
+        .book-btn {
             display: block;
-            background: #25D366;
-            color: white;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: var(--white);
             text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 15px;
+            border-radius: 8px;
             font-weight: bold;
         }
+        .book-btn:hover { background: var(--gold); color: var(--primary); }
 
-        /* الفوتر */
-        footer {
-            background: #1e272e;
-            color: white;
-            padding: 50px 5% 20px;
+        /* --- قسم الفخامة VIP --- */
+        .vip-section {
+            background: #000;
+            padding: 80px 5%;
+            color: var(--gold);
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-        .contact-item { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .copyright { text-align: center; border-top: 1px solid #333; padding-top: 20px; color: #7f8c8d; }
+        .vip-card { background: #1a1a1a; border: 1px solid #333; }
+        .vip-card .car-name { color: #fff; }
+        .vip-card .book-btn { background: var(--gold); color: #000; }
+        .vip-card .car-specs { background: #222; color: #ccc; }
 
+        /* --- الفوتر --- */
+        footer { background: var(--primary); color: var(--white); padding: 50px 5% 20px; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .contact-item { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-size: 1rem; }
+        .contact-item i { color: var(--gold); width: 20px; }
+        .copyright { text-align: center; border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; color: #888; }
+
+        /* الموبايل */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .top-bar { display: none; }
-            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } 
+            .top-bar { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div>
-            <i class="fas fa-envelope"></i> moujanrahal2@gmail.com
-            <span style="margin: 0 15px">|</span>
-            <i class="fas fa-map-marker-alt"></i> ميدلت، المغرب
+        <div class="contact-info">
+            <i class="fas fa-phone-alt"></i> 0699545164 | 0661487571
         </div>
-        <div>
-            <i class="fas fa-phone"></i> 0699545164 / 0661487571
+        <div class="lang-switch">
+            <button onclick="setLang('ar')">العربية</button>
+            <button onclick="setLang('fr')">Français</button>
         </div>
     </div>
 
     <nav>
-        <div class="logo">Auto<span>voco</span>loc</div>
+        <div class="logo">Auto<span>Vecoloc</span></div>
         <div class="nav-links">
-            <a href="#">الرئيسية</a>
-            <a href="#cars">السيارات</a>
-            <a href="#vip">المناسبات</a>
-            <a href="#contact">اتصل بنا</a>
+            <a href="#" data-key="home">الرئيسية</a>
+            <a href="#fleet" data-key="cars">السيارات</a>
+            <a href="#vip" data-key="vip">الفخامة</a>
+            <a href="#contact" data-key="contact">اتصل بنا</a>
         </div>
-        <a href="https://wa.me/212699545164" class="cta-btn"><i class="fab fa-whatsapp"></i> حجز سريع</a>
+        <a href="https://wa.me/212699545164" class="btn-reserve" data-key="book_now">حجز الآن</a>
     </nav>
 
     <header class="hero">
-        <div class="badge">مرحباً بكم في ميدلت</div>
-        <h1>وكالة Autovocoloc</h1>
-        <p>خدمة كراء السيارات السياحية والفاخرة بمدينة ميدلت والنواحي</p>
-        <a href="#cars" class="cta-btn" style="background: white; color: black !important;">اكتشف أسطولنا</a>
+        <h1 data-key="hero_title">وكالة AutoVecoloc ميدلت</h1>
+        <p data-key="hero_desc">الخيار الأول لكراء السيارات في ميدلت. خدمة توصيل، سائق محترف، وسيارات لكل المناسبات.</p>
     </header>
 
-    <section class="services">
-        <div class="service-box">
-            <i class="fas fa-car-side"></i>
-            <h3>توصيل السيارة</h3>
-            <p>نقوم بتوصيل السيارة إليك أينما كنت في ميدلت.</p>
-        </div>
-        <div class="service-box">
-            <i class="fas fa-user-tie"></i>
-            <h3>سائق خاص</h3>
-            <p>خدمة كراء السيارات بالسائق لراحتكم.</p>
-        </div>
-        <div class="service-box">
-            <i class="fas fa-star"></i>
-            <h3>سيارات للمناسبات</h3>
-            <p>سيارات فخمة للأعراس والمناسبات الخاصة.</p>
-        </div>
-    </section>
-
-    <section class="fleet" id="cars">
-        <div class="section-header">
-            <h2>أسطولنا المتنوع</h2>
-            <p>اختر السيارة التي تناسب حاجتك وميزانيتك</p>
-            <p style="font-size: 0.9rem; margin-top:10px">الألوان المتوفرة: أسود ⚫، أبيض ⚪، أزرق 🔵، أحمر 🔴</p>
+    <section class="fleet-section" id="fleet">
+        <div class="section-title">
+            <h2 data-key="our_fleet">أسطول السيارات</h2>
+            <div class="line"></div>
+            <p style="color:#666; margin-top:10px" data-key="colors_info">الألوان المتوفرة: أسود، أبيض، أزرق، أحمر</p>
         </div>
 
         <div class="cars-grid">
             
             <div class="car-card">
-                <div class="car-img-container">
-                    <img src="https://images.unsplash.com/photo-1623192809618-569055eb7128?q=80&w=600" alt="Dacia">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/2021_Dacia_Logan_Comfort_front.jpg/800px-2021_Dacia_Logan_Comfort_front.jpg" alt="Dacia Logan">
                 </div>
-                <div class="car-details">
-                    <div class="car-title">
-                        <h3>Dacia Logan / Sandero</h3>
-                        <span style="color:var(--accent); font-weight:bold">اقتصادي</span>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Dacia Logan</h3>
+                        <span class="car-price">Eco</span>
                     </div>
-                    <div class="tags">
-                        <span>مازوت</span><span>يدوي</span><span>مكيف</span>
+                    <div class="car-specs">
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span><i class="fas fa-cog"></i> Manuel</span>
                     </div>
-                    <a href="https://wa.me/212699545164?text=مهتم بحجز سيارة داسيا" class="whatsapp-btn">حجز الآن</a>
-                </div>
-            </div>
-
-            <div class="car-card">
-                <div class="car-img-container">
-                    <img src="https://images.unsplash.com/photo-1635783344662-7901014e7a0d?q=80&w=600" alt="Renault">
-                </div>
-                <div class="car-details">
-                    <div class="car-title">
-                        <h3>Clio 4 / Megane 3 & 4</h3>
-                        <span style="color:var(--accent); font-weight:bold">راحة</span>
+                    <div class="colors-available">
+                        <span data-key="colors">الألوان:</span>
+                        <span class="color-dot" style="background:black;"></span>
+                        <span class="color-dot" style="background:white;"></span>
+                        <span class="color-dot" style="background:#0044cc;"></span>
+                        <span class="color-dot" style="background:#cc0000;"></span>
                     </div>
-                    <div class="tags">
-                        <span>مازوت</span><span>توماتيك/يدوي</span>
-                    </div>
-                    <a href="https://wa.me/212699545164?text=مهتم بحجز سيارة كليو أو ميجان" class="whatsapp-btn">حجز الآن</a>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Dacia Logan" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
             <div class="car-card">
-                <div class="car-img-container">
-                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600" alt="SUV">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/2021_Dacia_Sandero_Stepway_Prestige_front.jpg" alt="Sandero">
                 </div>
-                <div class="car-details">
-                    <div class="car-title">
-                        <h3>Duster / Peugeot 2008</h3>
-                        <span style="color:var(--accent); font-weight:bold">عائلي</span>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Dacia Sandero</h3>
+                        <span class="car-price">Eco</span>
                     </div>
-                    <div class="tags">
-                        <span>SUV</span><span>مازوت</span><span>واسعة</span>
+                    <div class="car-specs">
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span><i class="fas fa-cog"></i> Manuel</span>
                     </div>
-                    <a href="https://wa.me/212699545164?text=مهتم بحجز داسيا داستر أو بيجو 2008" class="whatsapp-btn">حجز الآن</a>
+                    <div class="colors-available">
+                        <span data-key="colors">الألوان:</span>
+                        <span class="color-dot" style="background:black;"></span>
+                        <span class="color-dot" style="background:white;"></span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Sandero" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Renault_Clio_IV_Ph2_front.jpg" alt="Clio 4">
+                </div>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Renault Clio 4</h3>
+                        <span class="car-price">Confort</span>
+                    </div>
+                    <div class="car-specs">
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span><i class="fas fa-snowflake"></i> Clim</span>
+                    </div>
+                    <div class="colors-available">
+                        <span data-key="colors">الألوان:</span>
+                        <span class="color-dot" style="background:black;"></span>
+                        <span class="color-dot" style="background:#cc0000;"></span>
+                        <span class="color-dot" style="background:white;"></span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Clio 4" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Renault_M%C3%A9gane_III_Coupe_Front_20100402.jpg/800px-Renault_M%C3%A9gane_III_Coupe_Front_20100402.jpg" alt="Megane 3">
+                </div>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Renault Megane 3</h3>
+                        <span class="car-price">Confort</span>
+                    </div>
+                    <div class="car-specs">
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span><i class="fas fa-cog"></i> Manuel</span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Megane 3" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Renault_Megane_IV_Grandtour_front-1.jpg" alt="Megane 4">
+                </div>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Renault Megane 4</h3>
+                        <span class="car-price">Premium</span>
+                    </div>
+                    <div class="car-specs">
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                        <span><i class="fas fa-cog"></i> Auto/Man</span>
+                    </div>
+                    <div class="colors-available">
+                        <span data-key="colors">الألوان:</span>
+                        <span class="color-dot" style="background:black;"></span>
+                        <span class="color-dot" style="background:white;"></span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Megane 4" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Peugeot_2008_GT_Line_%28II%29_%E2%80%93_f_22052021.jpg" alt="2008">
+                </div>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Peugeot 2008</h3>
+                        <span class="car-price">SUV</span>
+                    </div>
+                    <div class="car-specs">
+                        <span><i class="fas fa-users"></i> Familiale</span>
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Peugeot 2008" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <div class="car-img-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Dacia_Duster_II_Facelift_at_IAA_2021_1X7A0065.jpg" alt="Duster">
+                </div>
+                <div class="car-content">
+                    <div class="car-header">
+                        <h3 class="car-name">Dacia Duster</h3>
+                        <span class="car-price">4x4</span>
+                    </div>
+                    <div class="car-specs">
+                        <span><i class="fas fa-mountain"></i> Tout-terrain</span>
+                        <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                    </div>
+                    <a href="https://wa.me/212699545164?text=Salam, je veux Duster" class="book-btn" data-key="book_wa">حجز عبر الواتساب <i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -321,54 +362,121 @@
     </section>
 
     <section class="vip-section" id="vip">
-        <h2>✨ سيارات المناسبات الخاصة ✨</h2>
-        <p>تميز في مناسباتك مع سياراتنا الفاخرة (Range Rover & Mercedes AMG)</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;" data-key="vip_title">قسم المناسبات الخاصة</h2>
+        <p style="color:#aaa; margin-bottom: 40px;" data-key="vip_desc">تميز في أعراسك ومناسباتك مع سياراتنا الفاخرة</p>
         
-        <div class="vip-grid">
-            <div class="vip-card">
-                <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=600" style="width:100%; height:250px; object-fit:cover;">
-                <h3>Range Rover</h3>
-                <a href="https://wa.me/212699545164?text=مهتم بحجز رنج روفر للمناسبات" class="cta-btn" style="background: var(--gold); color: black !important;">طلب سعر</a>
+        <div class="cars-grid">
+            <div class="car-card vip-card">
+                <div class="car-img-box">
+                    <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=600" alt="Range Rover">
+                </div>
+                <div class="car-content">
+                    <h3 class="car-name">Range Rover</h3>
+                    <p style="color:#888; font-size:0.9rem; margin-top:5px">Black Edition</p>
+                    <br>
+                    <a href="https://wa.me/212699545164?text=Prix Range Rover ?" class="book-btn">طلب سعر / Devis</a>
+                </div>
             </div>
-            <div class="vip-card">
-                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600" style="width:100%; height:250px; object-fit:cover;">
-                <h3>Mercedes AMG</h3>
-                <a href="https://wa.me/212699545164?text=مهتم بحجز مرسيدس AMG للمناسبات" class="cta-btn" style="background: var(--gold); color: black !important;">طلب سعر</a>
+
+            <div class="car-card vip-card">
+                <div class="car-img-box">
+                    <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600" alt="Mercedes AMG">
+                </div>
+                <div class="car-content">
+                    <h3 class="car-name">Mercedes AMG</h3>
+                    <p style="color:#888; font-size:0.9rem; margin-top:5px">Sport & Luxe</p>
+                    <br>
+                    <a href="https://wa.me/212699545164?text=Prix Mercedes AMG ?" class="book-btn">طلب سعر / Devis</a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <div class="footer-content">
+        <div class="footer-grid">
             <div>
-                <h2 class="logo" style="color:white; margin-bottom:20px">Auto<span>voco</span>loc</h2>
-                <p>الخيار الأول لكراء السيارات في ميدلت. جودة، مصداقية، وأثمنة مناسبة.</p>
+                <h2 class="logo" style="color:white; margin-bottom:20px">Auto<span>Vecoloc</span></h2>
+                <p data-key="footer_desc" style="color:#aaa;">الوكالة الرائدة في ميدلت. توصيل مجاني داخل المدينة، وسائق محترف رهن إشارتكم.</p>
             </div>
             <div>
-                <h3>معلومات الاتصال</h3>
-                <br>
+                <h3 style="color: var(--gold); margin-bottom: 20px;" data-key="contact_title">معلومات الاتصال</h3>
                 <div class="contact-item">
-                    <i class="fas fa-phone-alt" style="color:var(--accent)"></i>
-                    <a href="tel:0699545164" style="color:white">0699545164</a>
+                    <i class="fas fa-phone-alt"></i> <span>0699545164</span>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-phone-alt" style="color:var(--accent)"></i>
-                    <a href="tel:0661487571" style="color:white">0661487571</a>
+                    <i class="fas fa-phone-alt"></i> <span>0661487571</span>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-envelope" style="color:var(--accent)"></i>
-                    <span>moujanrahal2@gmail.com</span>
+                    <i class="fas fa-envelope"></i> <span>moujanrahal2@gmail.com</span>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-map-marker-alt" style="color:var(--accent)"></i>
-                    <span>ميدلت، المغرب</span>
+                    <i class="fas fa-map-marker-alt"></i> <span>Midelt, Maroc</span>
                 </div>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2024 Autovocoloc - جميع الحقوق محفوظة
+            &copy; 2024 AutoVecoloc Midelt. All rights reserved.
         </div>
     </footer>
 
+    <script>
+        // --- سكريبت تغيير اللغة ---
+        const translations = {
+            ar: {
+                home: "الرئيسية",
+                cars: "السيارات",
+                vip: "الفخامة",
+                contact: "اتصل بنا",
+                book_now: "حجز الآن",
+                hero_title: "وكالة AutoVecoloc ميدلت",
+                hero_desc: "الخيار الأول لكراء السيارات في ميدلت. خدمة توصيل، سائق محترف، وسيارات لكل المناسبات.",
+                our_fleet: "أسطول السيارات",
+                colors_info: "الألوان المتوفرة: أسود، أبيض، أزرق، أحمر",
+                colors: "الألوان:",
+                book_wa: "حجز عبر الواتساب",
+                vip_title: "قسم المناسبات الخاصة",
+                vip_desc: "تميز في أعراسك ومناسباتك مع سياراتنا الفاخرة",
+                contact_title: "معلومات الاتصال",
+                footer_desc: "الوكالة الرائدة في ميدلت. توصيل مجاني داخل المدينة، وسائق محترف رهن إشارتكم."
+            },
+            fr: {
+                home: "Accueil",
+                cars: "Véhicules",
+                vip: "Luxe",
+                contact: "Contact",
+                book_now: "Réserver",
+                hero_title: "Agence AutoVecoloc Midelt",
+                hero_desc: "Le premier choix pour la location de voitures à Midelt. Livraison, chauffeur pro, et voitures pour tous les événements.",
+                our_fleet: "Notre Flotte",
+                colors_info: "Couleurs dispo: Noir, Blanc, Bleu, Rouge",
+                colors: "Couleurs:",
+                book_wa: "Réserver sur WhatsApp",
+                vip_title: "Spécial Événements (VIP)",
+                vip_desc: "Distinguez-vous lors de vos événements avec nos voitures de luxe",
+                contact_title: "Contactez-nous",
+                footer_desc: "L'agence leader à Midelt. Livraison gratuite en ville et chauffeurs professionnels à votre service."
+            }
+        };
+
+        function setLang(lang) {
+            const body = document.body;
+            const elements = document.querySelectorAll('[data-key]');
+            
+            if (lang === 'fr') {
+                body.setAttribute('dir', 'ltr');
+                body.classList.add('lang-fr');
+            } else {
+                body.setAttribute('dir', 'rtl');
+                body.classList.remove('lang-fr');
+            }
+
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        }
+    </script>
 </body>
 </html>
